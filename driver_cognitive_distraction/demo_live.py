@@ -1,6 +1,7 @@
 import numpy as np
 import spatial_transforms
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 from models import shufflenet, shufflenetv2, resnet
 import torch.nn as nn
 import torch
@@ -37,10 +38,10 @@ shortcut_type = 'A'
 feature_dim = 512
 
 print('========================================Loading Normal Vectors========================================')
-normal_vec_front_d = np.load('./../normvec/normal_vec_front_d.npy')
-normal_vec_front_ir = np.load('./../normvec/normal_vec_front_ir.npy')
-normal_vec_top_d = np.load('./../normvec/normal_vec_top_d.npy')
-normal_vec_top_ir = np.load('./../normvec/normal_vec_top_ir.npy')
+normal_vec_front_d = np.load('./normvec/normal_vec_front_d.npy')
+normal_vec_front_ir = np.load('./normvec/normal_vec_front_ir.npy')
+normal_vec_top_d = np.load('./normvec/normal_vec_top_d.npy')
+normal_vec_top_ir = np.load('./normvec/normal_vec_top_ir.npy')
 
 normal_vec_front_d = torch.from_numpy(normal_vec_front_d)
 normal_vec_front_ir = torch.from_numpy(normal_vec_front_ir)
@@ -164,15 +165,15 @@ model_front_ir = nn.DataParallel(model_front_ir, device_ids=None)
 model_top_d = nn.DataParallel(model_top_d, device_ids=None)
 model_top_ir = nn.DataParallel(model_top_ir, device_ids=None)
 
-resume_path_front_d = './../checkpoints/best_model_resnet_front_depth.pth'
-resume_path_front_ir = './../checkpoints/best_model_resnet_front_IR.pth'
-resume_path_top_d = './../checkpoints/best_model_resnet_top_depth.pth'
-resume_path_top_ir = './../checkpoints/best_model_resnet_top_IR.pth'
+resume_path_front_d = './checkpoints/best_model_resnet_front_depth.pth'
+resume_path_front_ir = './checkpoints/best_model_resnet_front_IR.pth'
+resume_path_top_d = './checkpoints/best_model_resnet_top_depth.pth'
+resume_path_top_ir = './checkpoints/best_model_resnet_top_IR.pth'
 
-resume_checkpoint_front_d = torch.load(resume_path_front_d)
-resume_checkpoint_front_ir = torch.load(resume_path_front_ir)
-resume_checkpoint_top_d = torch.load(resume_path_top_d)
-resume_checkpoint_top_ir = torch.load(resume_path_top_ir)
+resume_checkpoint_front_d = torch.load(resume_path_front_d, map_location='cpu')
+resume_checkpoint_front_ir = torch.load(resume_path_front_ir, map_location='cpu')
+resume_checkpoint_top_d = torch.load(resume_path_top_d, map_location='cpu')
+resume_checkpoint_top_ir = torch.load(resume_path_top_ir, map_location='cpu')
 
 model_front_d.load_state_dict(resume_checkpoint_front_d['state_dict'])
 model_front_ir.load_state_dict(resume_checkpoint_front_ir['state_dict'])

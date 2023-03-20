@@ -266,10 +266,13 @@ def get_fine_tuning_parameters(model, ft_portion):
 def resnet18(**kwargs):
     """Constructs a ResNet-18 model.
     """
-    model = ResNet(BasicBlock, [2, 2, 2, 2], **kwargs)
+    model = ResNet(BasicBlock, 
+                    [2, 2, 2, 2],
+                    output_dim=512,
+                    sample_size=112,
+                    sample_duration=16,
+                    shortcut_type='A')
     return model
-
-
 
 def resnet50(**kwargs):
     """Constructs a ResNet-50 model.
