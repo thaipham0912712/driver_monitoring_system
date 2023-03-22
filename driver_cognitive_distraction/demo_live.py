@@ -1,14 +1,3 @@
-import numpy as np
-import spatial_transforms
-import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-from models import shufflenet, shufflenetv2, resnet
-import torch.nn as nn
-import torch
-import cv2
-from dataset_test import DAD_Test
-
-#==========================================================================================================
 # This file is used after training and testing phase to demonstrate a running demo of the Driver Monitoring System
 # with our contrastive approach.
 #
@@ -20,7 +9,17 @@ from dataset_test import DAD_Test
 #
 # If 'delay' is set to 0, the code runs one sample at a time. By pressing any key, the next sample will be processed
 # If 'delay' is not 0, the code will process all samples from be beginning with a delay of 'delay' millisecond
-#==========================================================================================================
+
+
+import numpy as np
+import spatial_transforms
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+from models import shufflenet, shufflenetv2, resnet
+import torch.nn as nn
+import torch
+import cv2
+from dataset_test import DAD_Test
 
 #======================================Hyperparameters=====================================================
 root_path = '/Users/oliver_pham/Workspace/DAD/'  #root path of the dataset
@@ -232,7 +231,11 @@ for batch, (data1, data2, data3, data4) in enumerate(zip(test_loader_front_d, te
         img = cv2.putText(img, action, (83, 35), font, 0.8, (0, 0, 255), 1)
     cv2.namedWindow('Demo', cv2.WINDOW_NORMAL)
     cv2.imshow('Demo', img)
-    cv2.waitKey(delay)
+    key = cv2.waitKey(delay)
+    if key == ord('q'):
+        print("THAI")
+        cv2.destroyAllWindows()
+        break
 
 cv2.destroyAllWindows()
 

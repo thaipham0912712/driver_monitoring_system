@@ -1,19 +1,4 @@
-PyTorch implementation of the article "[Driver Anomaly Detection: A Dataset and Contrastive Learning Approach](https://arxiv.org/pdf/2009.14660.pdf)".
-
 # Driver-Anomaly-Detection
-
-<div align="center" style="width:image width px;">
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/drinking_front.gif" width=350 alt="demo_front">
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/drinking_top.gif" width=350 alt="demo_top">
-  
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/adjusting_mirror_front.gif" width=350 alt="demo_front">
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/adjusting_mirror_top.gif" width=350 alt="demo_top">
-  
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/pick_up_sth_front.gif" width=350 alt="demo_front">
-  <img  src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/pick_up_sth_top.gif" width=350 alt="demo_top">
-</div>
-
-
 ## Illustration of Applied Methodology
 
 <p align="center"><img src="https://github.com/okankop/Driver-Anomaly-Detection/blob/master/visual/visual.png" align="middle" width="550" title="applied methodology" /><figcaption>Fig. 1:  Using contrastive learning, normal driving template vector <b>v<sub>n</sub></b> is learnt during training. At test time, any clip whose embedding is deviating more than threshold γ from normal driving template <b>v<sub>n</sub></b> is considered as anomalous driving. Examples are taken from new introduced Driver Anomaly Detection (DAD) dataset for front (left) and top (right) views on depth modality. 
@@ -21,7 +6,7 @@ PyTorch implementation of the article "[Driver Anomaly Detection: A Dataset and 
 
 ## Dataset Preperation
 
-The DAD dataset can be downloaded from its [official website](https://www.ei.tum.de/mmk/dad/) or [Gdrive](https://drive.google.com/drive/folders/1TVzNODlKiRKj60cwadnXofEsBkCDl1DZ?usp=sharing).
+The DAD dataset can be downloaded from [Gdrive](https://drive.google.com/drive/folders/1TVzNODlKiRKj60cwadnXofEsBkCDl1DZ?usp=sharing).
 
 
 ## Running the Code
@@ -133,23 +118,3 @@ Run the following command to start live demo:
 ```
 python live_demo.py
 ```
-
-
-
-
-## Citation
-
-Please cite the following article if you use this code or pre-trained models:
-
-```bibtex
-@inproceedings{kopuklu2021driver,
-  title={Driver anomaly detection: A dataset and contrastive learning approach},
-  author={Kopuklu, Okan and Zheng, Jiapeng and Xu, Hang and Rigoll, Gerhard},
-  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
-  pages={91--100},
-  year={2021}
-}
-```
-
-## Acknowledgement
-We thank Yonglong Tian for releasing his [codebase](https://github.com/HobbitLong/CMC), which we build our work on top.
